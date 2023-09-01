@@ -15,7 +15,7 @@ abstract class MovieRemoteDataSource {
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
-  static const apiKey = 'apiKey=2174d146bb9c0eab47529b2e77d6b526';
+  static const apiKey = 'api_key=2b75defa27c933d072274d82b4afcaf6';
   static const baseURL = 'https://api.themoviedb.org/3';
 
   final http.Client client;
@@ -30,6 +30,7 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     if (response.statusCode == 200) {
       return MovieResponse.fromJson(json.decode(response.body)).movieList;
     } else {
+      print(response.body);
       throw ServerException();
     }
   }

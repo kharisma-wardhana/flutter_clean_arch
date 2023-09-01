@@ -21,7 +21,7 @@ import 'package:moonton/presentation/provider/movie_list_notifier.dart';
 import 'package:moonton/presentation/provider/movie_search_notifier.dart';
 import 'package:moonton/presentation/provider/popular_movies_notifier.dart';
 import 'package:moonton/presentation/provider/top_rated_movies_notifier.dart';
-import 'package:moonton/presentation/provider/watchlist_notifier.dart';
+import 'package:moonton/presentation/provider/watchlist_movie_notifier.dart';
 
 final locator = GetIt.instance;
 
