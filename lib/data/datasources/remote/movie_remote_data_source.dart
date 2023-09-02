@@ -1,23 +1,27 @@
+import 'dart:convert';
+
+import 'package:http/http.dart' as http;
+import 'package:moonton/common/constants.dart';
 import 'package:moonton/common/exception.dart';
-import 'package:moonton/data/models/movie_detail_mode.dart';
+import 'package:moonton/data/models/movie_detail_model.dart';
 import 'package:moonton/data/models/movie_model.dart';
 import 'package:moonton/data/models/movie_response.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert';
 
 abstract class MovieRemoteDataSource {
   Future<List<MovieModel>> getNowPlayingMovies();
+
   Future<List<MovieModel>> getPopularMovies();
+
   Future<List<MovieModel>> getTopRatedMovies();
+
   Future<MovieDetailResponse> getMovieDetail(int id);
+
   Future<List<MovieModel>> getMovieRecommendations(int id);
+
   Future<List<MovieModel>> searchMovies(String query);
 }
 
 class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
-  static const apiKey = 'api_key=2b75defa27c933d072274d82b4afcaf6';
-  static const baseURL = 'https://api.themoviedb.org/3';
-
   final http.Client client;
 
   MovieRemoteDataSourceImpl({required this.client});
@@ -30,7 +34,6 @@ class MovieRemoteDataSourceImpl implements MovieRemoteDataSource {
     if (response.statusCode == 200) {
       return MovieResponse.fromJson(json.decode(response.body)).movieList;
     } else {
-      print(response.body);
       throw ServerException();
     }
   }
